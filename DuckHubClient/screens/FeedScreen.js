@@ -5,7 +5,7 @@ import { View, Text, StyleSheet } from 'react-native';
 export default function FeedScreen() {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <AppText>Feed Screen bla bla</AppText>
     </View>
   );
 }

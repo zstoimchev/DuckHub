@@ -1,11 +1,12 @@
 // screens/HomeScreen.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import AppText from '../components/AppText';
 
 export default function ProfileScreen() {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+      <AppText>Profile Screen bla bla bla</AppText>
     </View>
   );
 }
