@@ -10,6 +10,9 @@ import duck.dragonhack.duckhubapi.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class DuckService {
 
@@ -20,6 +23,20 @@ public class DuckService {
     public DuckService(DuckRepository duckRepository, UserRepository userRepository) {
         this.duckRepository = duckRepository;
         this.userRepository = userRepository;
+    }
+
+    // Get all ducks:
+    public List<DuckResponse> getAllDucks(){
+        List<Duck> ducks = duckRepository.findAll();
+
+        return ducks.stream().map(DuckResponse::fromDuck).collect(Collectors.toList());
+    }
+
+    // Getting a single duck:
+    public DuckResponse getDuckById(long id){
+        Duck duck = duckRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Duck not found!"));
+
+        return DuckResponse.fromDuck(duck);
     }
 
     // Add a duck:
@@ -35,21 +52,5 @@ public class DuckService {
         return DuckResponse.fromDuck(savedDuck);
     }
 
-    public Duck RequestToDuck(DuckRequest duckRequest) {
-        Duck duck = new Duck();
-        duck.setName(duckRequest.getName());
-        duck.setPhoto(duckRequest.getPhoto());
-        duck.setLevel(0);
-        return duck;
-    }
-
-    public DuckResponse DuckToResponse(Duck duck) {
-        DuckResponse duckResponse = new DuckResponse();
-        duckResponse.setId(duck.getId());
-        duckResponse.setName(duck.getName());
-        duckResponse.setPhoto(duck.getPhoto());
-        duckResponse.setLevel(duck.getLevel());
-        return duckResponse;
-    }
 
 }
