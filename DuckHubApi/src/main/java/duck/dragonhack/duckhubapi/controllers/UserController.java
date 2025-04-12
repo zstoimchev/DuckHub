@@ -43,6 +43,12 @@ public class UserController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<UserResponse> login(@RequestBody UserRequest userRequest) {
+        UserResponse userResponse = userService.login(userRequest);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+    }
+
 
     // Add your endpoint methods here, e.g., for adding or retrieving users
 
