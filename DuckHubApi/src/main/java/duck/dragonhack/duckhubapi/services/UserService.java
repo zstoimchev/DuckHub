@@ -1,5 +1,6 @@
 package duck.dragonhack.duckhubapi.services;
 
+import duck.dragonhack.duckhubapi.DTOs.UserRequest;
 import duck.dragonhack.duckhubapi.DTOs.UserResponse;
 
 public interface UserService {
