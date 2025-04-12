@@ -17,19 +17,9 @@ public class Challenge {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "description", nullable = false)
-    private String description;
+    @Column(name = "title", nullable = false)
+    private String title;
 
     @Column(name = "difficulty", nullable = false)
-    private int difficulty;
-
-    @Column(name = "status", nullable = false)
-    private int status;
-
-    @ManyToOne
-    @JoinColumn(name = "duck_id")
-    private Duck duck;
+    private String difficulty;
 }

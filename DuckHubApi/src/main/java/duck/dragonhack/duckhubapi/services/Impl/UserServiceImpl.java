@@ -2,7 +2,6 @@ package duck.dragonhack.duckhubapi.services.Impl;
 
 import duck.dragonhack.duckhubapi.DTOs.UserRequest;
 import duck.dragonhack.duckhubapi.DTOs.UserResponse;
-import duck.dragonhack.duckhubapi.mappers.UserMappers;
 import duck.dragonhack.duckhubapi.models.User;
 import duck.dragonhack.duckhubapi.repositories.UserRepository;
 import duck.dragonhack.duckhubapi.services.UserService;

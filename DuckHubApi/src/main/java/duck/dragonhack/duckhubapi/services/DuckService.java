@@ -1,56 +1,17 @@
 package duck.dragonhack.duckhubapi.services;
 
-
 import duck.dragonhack.duckhubapi.DTOs.DuckRequest;
 import duck.dragonhack.duckhubapi.DTOs.DuckResponse;
-import duck.dragonhack.duckhubapi.models.Duck;
-import duck.dragonhack.duckhubapi.models.User;
-import duck.dragonhack.duckhubapi.repositories.DuckRepository;
-import duck.dragonhack.duckhubapi.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Service
-public class DuckService {
+public interface DuckService {
+    List<DuckResponse> getAllDucks();
 
-    private final DuckRepository duckRepository;
-    private final UserRepository userRepository;
+    DuckResponse getDuckById(long id);
 
-    @Autowired
-    public DuckService(DuckRepository duckRepository, UserRepository userRepository) {
-        this.duckRepository = duckRepository;
-        this.userRepository = userRepository;
-    }
+    DuckResponse addDuck(long id, DuckRequest duckRequest);
 
-    // Get all ducks:
-    public List<DuckResponse> getAllDucks(){
-        List<Duck> ducks = duckRepository.findAll();
-
-        return ducks.stream().map(DuckResponse::fromDuck).collect(Collectors.toList());
-    }
-
-    // Getting a single duck:
-    public DuckResponse getDuckById(long id){
-        Duck duck = duckRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Duck not found!"));
-
-        return DuckResponse.fromDuck(duck);
-    }
-
-    // Add a duck:
-    public DuckResponse addDuck(long id, DuckRequest duckRequest){
-       User user = userRepository.findById(id)
-            .orElseThrow(() -> new IllegalArgumentException("User not found"));
-
-        Duck duck = duckRequest.toDuck();
-        duck.setUser(user);
-
-        Duck savedDuck = duckRepository.save(duck);
-
-        return DuckResponse.fromDuck(savedDuck);
-    }
-
+    List<DuckResponse> getDucksByUserId(long id);
 
 }
