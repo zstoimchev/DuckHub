@@ -5,12 +5,12 @@ import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import LeaderboardScreen from '../screens/LeaderboardScreen';
 import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet } from 'react-native';
 
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabNavigator() {
   return (
-    <NavigationContainer>
       <Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ color, size }) => {
@@ -31,14 +31,23 @@ export default function BottomTabNavigator() {
             return <Ionicons name={iconName} size={size} color={color} />;
           },
           headerShown: false,
-          tabBarActiveTintColor: '#007AFF',
+          tabBarActiveTintColor: '#D98324',
           tabBarInactiveTintColor: 'gray',
+          tabBarStyle: {
+            backgroundColor: '#000000',  // Set the tab bar background to black
+            borderTopWidth: 0,        // Remove the top border line (optional)
+          },
         })}
       >
         <Tab.Screen name="Home" component={HomeScreen} />
         <Tab.Screen name="Leaderboard" component={LeaderboardScreen} />
         <Tab.Screen name="Profile" component={ProfileScreen} />
       </Tab.Navigator>
-    </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+});
