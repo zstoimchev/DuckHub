@@ -1,4 +1,3 @@
-
 import { View, Text, StyleSheet, Image, Button, ScrollView } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { TextInput, TouchableOpacity, Alert } from 'react-native';
@@ -120,12 +119,6 @@ export default function ProfileScreen({ navigation }) {
             sharing knowledge with the community.
           </AppText>
 
-          {/* LinkedIn and GitHub */}
-          <AppText weight="alatsi" style={styles.descriptionTitle}>
-            Connect with me
-          </AppText>
-          <AppText style={styles.link}>LinkedIn: @nikola-dev</AppText>
-          <AppText style={styles.link}>GitHub: @nikola-dev</AppText>
         </View>
 
 
