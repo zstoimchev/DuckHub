@@ -5,5 +5,4 @@ import duck.dragonhack.duckhubapi.DTOs.PostResponse;
 
 public interface PostService {
     PostResponse addPost(PostRequest postRequest);
-
 }

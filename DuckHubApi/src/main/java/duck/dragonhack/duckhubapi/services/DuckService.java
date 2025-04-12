@@ -13,5 +13,4 @@ public interface DuckService {
     DuckResponse addDuck(long id, DuckRequest duckRequest);
 
     List<DuckResponse> getDucksByUserId(long id);
-
 }
