@@ -1,5 +1,6 @@
 package duck.dragonhack.duckhubapi.DTOs;
 
+import duck.dragonhack.duckhubapi.models.Duck;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,15 @@ public class DuckResponse {
     private String photo;
     private int level;
     private Long userId;
+
+    public static DuckResponse fromDuck(Duck duck) {
+        return new DuckResponse(
+                duck.getId(),
+                duck.getName(),
+                duck.getPhoto(),
+                duck.getLevel(),
+                duck.getUser() != null ? duck.getUser().getId() : null
+        );
+    }
+
 }

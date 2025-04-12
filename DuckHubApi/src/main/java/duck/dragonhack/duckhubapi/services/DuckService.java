@@ -22,19 +22,17 @@ public class DuckService {
         this.userRepository = userRepository;
     }
 
-
     // Add a duck:
     public DuckResponse addDuck(long id, DuckRequest duckRequest){
        User user = userRepository.findById(id)
             .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-        Duck duck = RequestToDuck(duckRequest);
+        Duck duck = duckRequest.toDuck();
         duck.setUser(user);
+
         Duck savedDuck = duckRepository.save(duck);
 
-        DuckResponse duckResponse = DuckToResponse(savedDuck);
-        duckResponse.setId(user.getId());
-        return duckResponse;
+        return DuckResponse.fromDuck(savedDuck);
     }
 
     public Duck RequestToDuck(DuckRequest duckRequest) {
@@ -53,6 +51,5 @@ public class DuckService {
         duckResponse.setLevel(duck.getLevel());
         return duckResponse;
     }
-
 
 }
