@@ -1,22 +1,33 @@
-// screens/LoginScreen.js
+// screens/RegisterScreen.js
 import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 import AppText from "../components/AppText";
 
-export default function LoginScreen({ navigation }) {
-  const handleLogin = () => {
-    navigation.replace("MainApp"); // Goes to tabs after login
-  };
-
+export default function RegisterScreen({ navigation }) {
   return (
     <View style={styles.container}>
       {/* Replace with logo later */}
-      <AppText style={styles.title}>Please sign in to continue</AppText>
+      <AppText style={styles.title}>Please fill the input below here</AppText>
 
       <TextInput
         style={styles.input}
-        placeholder="user123@email.com"
+        placeholder="PLUS NAME"
         placeholderTextColor="#EFEFEF80"
-        keyboardType="email-address"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="Jhone williams"
+        placeholderTextColor="#EFEFEF80"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="PHONE"
+        placeholderTextColor="#EFEFEF80"
+        keyboardType="phone-pad"
+      />
+      <TextInput
+        style={styles.input}
+        placeholder="SMALL"
+        placeholderTextColor="#EFEFEF80"
       />
       <TextInput
         style={styles.input}
@@ -24,17 +35,22 @@ export default function LoginScreen({ navigation }) {
         placeholderTextColor="#EFEFEF80"
         secureTextEntry
       />
+      <TextInput
+        style={styles.input}
+        placeholder="CONFIRM PASSWORD"
+        placeholderTextColor="#EFEFEF80"
+        secureTextEntry
+      />
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <AppText style={styles.buttonText}>LOGIN</AppText>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("Login")}
+      >
+        <AppText style={styles.buttonText}>SIGN UP</AppText>
       </TouchableOpacity>
 
-      <TouchableOpacity>
-        <AppText style={styles.link}>Forgot Password?</AppText>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-        <AppText style={styles.link}>Don't have an account? Sign up</AppText>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <AppText style={styles.link}>Already have an account? Sign in</AppText>
       </TouchableOpacity>
     </View>
   );

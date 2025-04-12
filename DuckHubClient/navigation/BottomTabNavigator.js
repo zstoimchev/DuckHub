@@ -1,11 +1,11 @@
 import React from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import LeaderboardScreen from '../screens/LeaderboardScreen';
-import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet } from 'react-native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import HomeScreen from "../screens/HomeScreen";
+import ProfileScreen from "../screens/ProfileScreen";
+import LeaderboardScreen from "../screens/LeaderboardScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const Tab = createBottomTabNavigator();
 
@@ -16,17 +16,18 @@ export default function BottomTabNavigator() {
           tabBarIcon: ({ color, size }) => {
             let iconName;
 
-            switch (route.name) {
-              case 'Home':
-                iconName = 'home-outline';
-                break;
-              case 'Profile':
-                iconName = 'person-outline';
-                break;
-              case 'Leaderboard':
-                iconName = 'trophy-outline';
-                break;
-            }
+
+          switch (route.name) {
+            case "Home":
+              iconName = "home-outline";
+              break;
+            case "Profile":
+              iconName = "person-outline";
+              break;
+            case "Leaderboard":
+              iconName = "trophy-outline";
+              break;
+          }
 
             return <Ionicons name={iconName} size={size} color={color} />;
           },
@@ -51,3 +52,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+

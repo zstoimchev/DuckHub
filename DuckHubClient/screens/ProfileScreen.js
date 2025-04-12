@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     gap: 25,
   },
   statItem: {
-    alignItems: 'center',
+    alignItems: "center",
   },
   statNumber: {
     fontSize: 20,
