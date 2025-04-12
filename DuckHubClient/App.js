@@ -16,6 +16,8 @@ import RegisterScreen from "./screens/RegisterScreen.js";
 
 const Stack = createNativeStackNavigator();
 
+const Stack = createStackNavigator();
+
 export default function App() {
   const [interLoaded] = useInter({ Inter_400Regular });
   const [alatsiLoaded] = useAlatsi({ Alatsi_400Regular });
@@ -37,3 +39,10 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+});
