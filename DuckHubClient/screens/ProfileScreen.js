@@ -87,17 +87,23 @@ export default function ProfileScreen({ navigation }) {
         {/* Stats Row */}
         <View style={styles.statsRow}>
           <View style={styles.statItem}>
-            <AppText weight="alatsi" style={styles.statNumber}>129</AppText>
+            <AppText weight="alatsi" style={styles.statNumber}>
+              129
+            </AppText>
             <AppText style={styles.statLabel}>Followers</AppText>
           </View>
 
           <View style={styles.statItem}>
-            <AppText weight="alatsi" style={styles.statNumber}>94</AppText>
+            <AppText weight="alatsi" style={styles.statNumber}>
+              94
+            </AppText>
             <AppText style={styles.statLabel}>Following</AppText>
           </View>
 
           <View style={styles.statItem}>
-            <AppText weight="alatsi" style={styles.statNumber}>32</AppText>
+            <AppText weight="alatsi" style={styles.statNumber}>
+              32
+            </AppText>
             <AppText style={styles.statLabel}>Ducks</AppText>
           </View>
         </View>
@@ -108,8 +114,11 @@ export default function ProfileScreen({ navigation }) {
             About Me
           </AppText>
           <AppText style={styles.descriptionText}>
-            I am a passionate developer, constantly learning and building projects that excite me. Always exploring new technologies and sharing knowledge with the community.
+            I am a passionate developer, constantly learning and building
+            projects that excite me. Always exploring new technologies and
+            sharing knowledge with the community.
           </AppText>
+
         </View>
 
 
@@ -138,6 +147,7 @@ export default function ProfileScreen({ navigation }) {
         </View>
 
         {/* Add Duck Button */}
+
         <View style={{ alignItems: 'center' }}>
           <TouchableOpacity
             style={styles.addButton}
@@ -146,6 +156,7 @@ export default function ProfileScreen({ navigation }) {
             <Ionicons name="add" size={48} color="white" />
           </TouchableOpacity>
         </View>
+
       </View>
     </ScrollView>
   );
@@ -154,8 +165,8 @@ export default function ProfileScreen({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#0D0A07',
+    alignItems: "center",
+    backgroundColor: "#0D0A07",
     paddingTop: 60,
   },
   profileImageWrapper: {
@@ -178,11 +189,11 @@ const styles = StyleSheet.create({
   username: {
     fontSize: 22,
     marginBottom: 24,
-    color: 'white',
+    color: "white",
   },
   statsRow: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     gap: 25,
   },
   statItem: {
@@ -190,53 +201,55 @@ const styles = StyleSheet.create({
   },
   statNumber: {
     fontSize: 20,
-    color: 'white',
+    color: "white",
   },
   statLabel: {
     fontSize: 14,
-    color: 'gray',
+    color: "gray",
   },
   description: {
-    width: '95%',
+    width: "95%",
     marginTop: 30,
     padding: 10,
     borderRadius: 20,
-    borderColor: 'white',
+    borderColor: "white",
     borderWidth: 0.3,
-    backgroundColor: '#1C1C1C',
+    backgroundColor: "#1C1C1C",
   },
   descriptionTitle: {
     marginLeft: 10,
     marginTop: 10,
     fontSize: 20,
-    color: 'white',
+    color: "white",
     marginBottom: 10,
-    textAlign: 'left',
+    textAlign: "left",
   },
   descriptionText: {
     fontSize: 14,
-    color: 'white',
+    color: "white",
     marginBottom: 15,
-    textAlign: 'center',
+    textAlign: "center",
   },
+
   ducksSection: {
     marginTop: 40,
-    width: '95%',
-    alignItems: 'center',
+    width: "95%",
+    alignItems: "center",
   },
+
   myDucks: {
     fontSize: 30,
     color: 'white',
     marginBottom: 20,
   },
   ducksList: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-    width: '100%',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
+    width: "100%",
   },
   duckItem: {
-    alignItems: 'center',
+    alignItems: "center",
     margin: 10,
   },
   duckImage: {
@@ -246,6 +259,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   duckName: {
+
     color: 'white',
     fontSize: 18,
   },
@@ -258,5 +272,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: 10,
     marginBottom: 40,
+
   },
 });

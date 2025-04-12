@@ -1,43 +1,44 @@
-// screens/RegisterScreen.js
-import { View, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import {
+  View,
+  TextInput,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  Dimensions,
+} from "react-native";
 import AppText from "../components/AppText";
+
+const { width } = Dimensions.get("window");
 
 export default function RegisterScreen({ navigation }) {
   return (
     <View style={styles.container}>
-      {/* Replace with logo later */}
+      <Image
+        source={require("../assets/QuackUpLogo.png")}
+        style={styles.logo}
+      />
+      <AppText style={styles.appName}>QuackUp</AppText>
       <AppText style={styles.title}>Please fill the input below here</AppText>
 
       <TextInput
         style={styles.input}
-        placeholder="PLUS NAME"
+        placeholder="Full Name"
         placeholderTextColor="#EFEFEF80"
       />
       <TextInput
         style={styles.input}
-        placeholder="Jhone williams"
+        placeholder="Username"
         placeholderTextColor="#EFEFEF80"
       />
       <TextInput
         style={styles.input}
-        placeholder="PHONE"
+        placeholder="Email"
         placeholderTextColor="#EFEFEF80"
-        keyboardType="phone-pad"
+        keyboardType="email-address"
       />
       <TextInput
         style={styles.input}
-        placeholder="SMALL"
-        placeholderTextColor="#EFEFEF80"
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="PASSWORD"
-        placeholderTextColor="#EFEFEF80"
-        secureTextEntry
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="CONFIRM PASSWORD"
+        placeholder="Password"
         placeholderTextColor="#EFEFEF80"
         secureTextEntry
       />
@@ -94,5 +95,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     opacity: 0.8,
     marginTop: 10,
+  },
+  logo: {
+    width: width * 0.7,
+    height: width * 0.7,
+    alignSelf: "center",
+  },
+  appName: {
+    color: "#EFEFEF",
+    fontSize: 30,
+    textAlign: "center",
+    marginTop: -60,
+    marginBottom: 30,
   },
 });
