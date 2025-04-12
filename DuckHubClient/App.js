@@ -13,6 +13,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import BottomTabNavigator from "./navigation/BottomTabNavigator.js";
 import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen.js";
+import AddDuckScreen from "./screens/AddDuckScreen";
+import ChallengesScreen from "./screens/ChallengesScreen.js";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +35,11 @@ export default function App() {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Register" component={RegisterScreen} />
         <Stack.Screen name="MainApp" component={BottomTabNavigator} />
+        <Stack.Screen name="AddDuck" component={AddDuckScreen} />
+        <Stack.Screen name="Challenges" component={ChallengesScreen} /> 
       </Stack.Navigator>
     </NavigationContainer>
   );
+
 }
+
