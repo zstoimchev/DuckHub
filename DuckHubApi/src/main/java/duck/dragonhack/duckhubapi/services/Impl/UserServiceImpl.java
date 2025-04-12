@@ -9,6 +9,10 @@ import duck.dragonhack.duckhubapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -28,7 +32,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUser(long id) {
-        return null;
+        return UserToResponse(Objects.requireNonNull(userRepository.findById(id).orElse(null)));
+    }
+
+    @Override
+    public List<UserResponse> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        if (users.isEmpty()) {
+            return null;
+        }
+        return users.stream().map(this::UserToResponse).collect(Collectors.toList());
     }
 
     public User RequestToUser(UserRequest userRequest) {
