@@ -3,6 +3,7 @@ package duck.dragonhack.duckhubapi.services.Impl;
 import duck.dragonhack.duckhubapi.DTOs.PostRequest;
 import duck.dragonhack.duckhubapi.DTOs.PostResponse;
 import duck.dragonhack.duckhubapi.models.Post;
+import duck.dragonhack.duckhubapi.models.User;
 import duck.dragonhack.duckhubapi.repositories.ChallengeRepository;
 import duck.dragonhack.duckhubapi.repositories.DuckRepository;
 import duck.dragonhack.duckhubapi.repositories.PostRepository;
@@ -30,7 +31,13 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponse addPost(PostRequest postRequest) {
         Post post = postRequest.RequestToPost();
-        post.setUser(userRepository.findById(postRequest.getUserId()).orElse(null));
+        User user = userRepository.findById(postRequest.getUserId()).orElse(null);
+
+        if (user != null) {
+            post.setUser(user);
+            user.setChallengeCount(user.getChallengeCount() + 1); // Increment challenge_count
+            userRepository.save(user); // Save updated user
+        }
         post.setDuck(duckRepository.findById(postRequest.getDuckId()).orElse(null));
         post.setChallenge(challengeRepository.findById(postRequest.getChallengeId()).orElse(null));
         post.setStatus("COMPLETED");
