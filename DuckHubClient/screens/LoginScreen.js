@@ -46,11 +46,18 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <Image
-        source={require("../assets/QuackUpLogo.png")}
-        style={styles.logo}
-      />
-      <AppText style={styles.appName}>QuackUp</AppText>
+      <View style={styles.logoContainer}>
+        <Image
+          source={require("../assets/QuackUpLogo.png")}
+          style={styles.logo}
+        />
+        <View style={styles.appNameContainer}>
+          <AppText style={styles.quackText}>Quack</AppText>
+          <View style={styles.upBox}>
+            <AppText style={styles.upText}>Up</AppText>
+          </View>
+        </View>
+      </View>
       <AppText style={styles.title}>Please sign in to continue</AppText>
 
       <TextInput
@@ -131,5 +138,36 @@ const styles = StyleSheet.create({
     textAlign: "center",
     marginTop: -60,
     marginBottom: 30,
+  },
+  logoContainer: {
+    alignItems: "center",
+    marginBottom: 30,
+  },
+  appNameContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: -60,
+  },
+  quackText: {
+    color: "#EFEFEF",
+    fontSize: 30,
+    fontFamily: "Atlas_400Regular",
+    fontWeight: "bold",
+  },
+  upBox: {
+    backgroundColor: "#D98324",
+    borderRadius: 6,
+    paddingHorizontal: 6,
+    paddingVertical: 4,
+    marginLeft: 6,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  upText: {
+    color: "#0D0A07",
+    fontSize: 24,
+    fontFamily: "Atlas_400Regular",
+    fontWeight: "bold",
   },
 });
