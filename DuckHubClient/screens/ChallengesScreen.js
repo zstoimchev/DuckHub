@@ -1,53 +1,68 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, Alert } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView, Image, TouchableOpacity, ActivityIndicator, Alert } from 'react-native';
 import AppText from '../components/AppText';
 import { Ionicons } from '@expo/vector-icons';
-
 
 export default function ChallengesScreen({ route, navigation }) {
   const { duckName, duckImage } = route.params;
 
-  // Sample challenges for easy, medium, and hard levels
+  const [completedChallengeIds, setCompletedChallengeIds] = useState([]);
   const [challenges, setChallenges] = useState({
-    easy: [
-      { id: 1, task: 'Take a photo with your duck' },
-      { id: 2, task: 'Write code with your duck' },
-      { id: 3, task: 'Take a selfie with your duck' },
-      { id: 4, task: 'Teach your duck how to swim' },
-    ],
-    medium: [
-      { id: 5, task: 'Share a blog post about your duck' },
-      { id: 6, task: 'Write a story with your duck' },
-      { id: 7, task: 'Create a video with your duck' },
-      { id: 8, task: 'Draw your duck' },
-    ],
-    hard: [
-      { id: 9, task: 'Host a meetup with your duck' },
-      { id: 10, task: 'Build an app with your duck' },
-      { id: 11, task: 'Give a talk with your duck' },
-      { id: 12, task: 'Take your duck on an adventure' },
-    ]
+    easy: [],
+    medium: [],
+    hard: [],
   });
+  const [loading, setLoading] = useState(false);
 
-  // Handle challenge click (for future development)
-  const handleChallengeClick = (task) => {
-    Alert.alert('Challenge Clicked', `You clicked on: ${task}`, [
-      { text: 'OK' }
-    ]);
+  // Fetch challenges from the backend API
+  const fetchChallenges = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch('http://127.0.0.1:8081/api/challenges');
+      const data = await response.json();
+      setChallenges({
+        easy: data.EASY || [],
+        medium: data.MEDIUM || [],
+        hard: data.HARD || [],
+      });
+    } catch (error) {
+      console.error("Error fetching challenges:", error);
+      Alert.alert('Error', 'Unable to fetch challenges');
+    } finally {
+      setLoading(false);
+    }
   };
+
+  useEffect(() => {
+    fetchChallenges();
+  }, []); // Fetch challenges when the component mounts
+
+  const handleChallengeClick = (id, task) => {
+    navigation.navigate('ChallengeDetail', {
+      task,
+      onComplete: () => setCompletedChallengeIds(prev => [...prev, id]),
+    });
+  };
+
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <ActivityIndicator size="large" color="#fff" />
+      </View>
+    );
+  }
 
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <View style={styles.container}>
-      <TouchableOpacity
+        <TouchableOpacity
           style={styles.backButton}
-          onPress={() => navigation.goBack()} // Go back to the previous screen
+          onPress={() => navigation.goBack()}
         >
           <Ionicons name="arrow-back" size={24} color="white" />
         </TouchableOpacity>
 
-
-        {/* Duck info */}
         <Image source={{ uri: duckImage }} style={styles.duckImage} />
         <Text style={styles.duckName}>{duckName}</Text>
 
@@ -60,9 +75,14 @@ export default function ChallengesScreen({ route, navigation }) {
             <TouchableOpacity
               key={challenge.id}
               style={styles.challengeItem}
-              onPress={() => handleChallengeClick(challenge.task)} // Handle click
+              onPress={() => handleChallengeClick(challenge.id, challenge.task)}
             >
-              <Text style={styles.challengeText}>{challenge.task}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.challengeText}>{challenge.task}</Text>
+                {completedChallengeIds.includes(challenge.id) && (
+                  <Ionicons name="checkmark-circle" size={20} color="#28a745" style={{ marginLeft: 10 }} />
+                )}
+              </View>
             </TouchableOpacity>
           ))}
         </View>
@@ -74,9 +94,14 @@ export default function ChallengesScreen({ route, navigation }) {
             <TouchableOpacity
               key={challenge.id}
               style={styles.challengeItem}
-              onPress={() => handleChallengeClick(challenge.task)} // Handle click
+              onPress={() => handleChallengeClick(challenge.id, challenge.task)}
             >
-              <Text style={styles.challengeText}>{challenge.task}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.challengeText}>{challenge.task}</Text>
+                {completedChallengeIds.includes(challenge.id) && (
+                  <Ionicons name="checkmark-circle" size={20} color="#28a745" style={{ marginLeft: 10 }} />
+                )}
+              </View>
             </TouchableOpacity>
           ))}
         </View>
@@ -88,9 +113,14 @@ export default function ChallengesScreen({ route, navigation }) {
             <TouchableOpacity
               key={challenge.id}
               style={styles.challengeItem}
-              onPress={() => handleChallengeClick(challenge.task)} // Handle click
+              onPress={() => handleChallengeClick(challenge.id, challenge.task)}
             >
-              <Text style={styles.challengeText}>{challenge.task}</Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <Text style={styles.challengeText}>{challenge.task}</Text>
+                {completedChallengeIds.includes(challenge.id) && (
+                  <Ionicons name="checkmark-circle" size={20} color="#28a745" style={{ marginLeft: 10 }} />
+                )}
+              </View>
             </TouchableOpacity>
           ))}
         </View>
@@ -145,17 +175,14 @@ const styles = StyleSheet.create({
   challengeItem: {
     width: '100%',
     height: 60,
-    backgroundColor: '#28a745', // Green background for challenges
+    backgroundColor: '#2a2a2a',
     borderRadius: 10,
     justifyContent: 'center',
-    alignItems: 'left',
+    paddingHorizontal: 10,
     marginBottom: 10,
-    padding: 10,
   },
   challengeText: {
     color: 'white',
     fontSize: 16,
-    textAlign: 'left',
-    marginLeft: 10,
   },
 });
