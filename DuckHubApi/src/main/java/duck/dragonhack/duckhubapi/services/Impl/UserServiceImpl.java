@@ -67,4 +67,13 @@ public class UserServiceImpl implements UserService {
         userResponse.setFollowingCount(user.getFollowingCount());
         return userResponse;
     }
+
+    @Override
+    public UserResponse login(UserRequest userRequest) {
+        User user = userRepository.findByEmailAndPassword(userRequest.getEmail(), userRequest.getPassword());
+        if (user == null) {
+            return null;
+        }
+        return UserToResponse(user);
+    }
 }

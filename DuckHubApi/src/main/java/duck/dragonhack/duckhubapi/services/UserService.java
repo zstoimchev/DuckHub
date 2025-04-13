@@ -11,4 +11,6 @@ public interface UserService {
     UserResponse getUser(long id);
 
     List<UserResponse> getAllUsers();
+
+    UserResponse login(UserRequest userRequest);
 }
