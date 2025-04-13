@@ -1,15 +1,7 @@
 package duck.dragonhack.duckhubapi.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "followings")
 public class Following {
@@ -24,4 +16,39 @@ public class Following {
     @ManyToOne
     @JoinColumn(name = "following_id", nullable = false)
     private User following;
+
+    // Default constructor
+    public Following() {}
+
+    // Constructor with all parameters
+    public Following(long id, User user, User following) {
+        this.id = id;
+        this.user = user;
+        this.following = following;
+    }
+
+    // Getters and setters
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getFollowing() {
+        return following;
+    }
+
+    public void setFollowing(User following) {
+        this.following = following;
+    }
 }
