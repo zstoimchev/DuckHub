@@ -1,14 +1,12 @@
-import { View, Text, StyleSheet, Image, Button, ScrollView } from 'react-native';
-import React, { useState, useEffect } from 'react';
-import { TextInput, TouchableOpacity, Alert } from 'react-native';
-import * as ImagePicker from 'expo-image-picker';
-import { Ionicons } from '@expo/vector-icons';
-import AppText from '../components/AppText';
+import { View, StyleSheet, Image, ScrollView } from "react-native";
+import React, { useState, useEffect } from "react";
+import { TextInput, TouchableOpacity, Alert } from "react-native";
+import * as ImagePicker from "expo-image-picker";
+import { Ionicons } from "@expo/vector-icons";
+import AppText from "../components/AppText";
 
 export default function ProfileScreen({ navigation }) {
-  const [ducks, setDucks] = useState([
-
-  ]);
+  const [ducks, setDucks] = useState([]);
 
   const [profileImage, setProfileImage] = useState(null);
 
@@ -16,8 +14,8 @@ export default function ProfileScreen({ navigation }) {
   useEffect(() => {
     (async () => {
       const { status } = await ImagePicker.requestCameraPermissionsAsync();
-      if (status !== 'granted') {
-        alert('Camera permission is required to take a photo.');
+      if (status !== "granted") {
+        alert("Camera permission is required to take a photo.");
       }
     })();
   }, []);
@@ -25,11 +23,11 @@ export default function ProfileScreen({ navigation }) {
   // Function to pick a photo (either camera or gallery)
   const pickImage = async () => {
     const options = [
-      { text: 'Take a Photo', onPress: () => launchCamera() },
-      { text: 'Choose from Gallery', onPress: () => launchGallery() },
-      { text: 'Cancel', style: 'cancel' },
+      { text: "Take a Photo", onPress: () => launchCamera() },
+      { text: "Choose from Gallery", onPress: () => launchGallery() },
+      { text: "Cancel", style: "cancel" },
     ];
-    Alert.alert('Profile Picture', 'Choose a method:', options);
+    Alert.alert("Profile Picture", "Choose a method:", options);
   };
 
   const launchCamera = async () => {
@@ -64,15 +62,23 @@ export default function ProfileScreen({ navigation }) {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollContainer} style={{ backgroundColor: '#0D0A07' }}>
+    <ScrollView
+      contentContainerStyle={styles.scrollContainer}
+      style={{ backgroundColor: "#0D0A07" }}
+    >
       <View style={styles.container}>
         {/* Profile Photo */}
-        <TouchableOpacity style={styles.profileImageWrapper} onPress={pickImage}>
+        <TouchableOpacity
+          style={styles.profileImageWrapper}
+          onPress={pickImage}
+        >
           {profileImage ? (
             <Image source={{ uri: profileImage }} style={styles.avatar} />
           ) : (
             <Image
-              source={{ uri: 'https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg?semt=ais_hybrid&w=740' }} // Default profile image if no photo is added
+              source={{
+                uri: "https://img.freepik.com/premium-vector/social-media-logo_1305298-29989.jpg?semt=ais_hybrid&w=740",
+              }} // Default profile image if no photo is added
               style={styles.avatar}
             />
           )}
@@ -118,9 +124,7 @@ export default function ProfileScreen({ navigation }) {
             projects that excite me. Always exploring new technologies and
             sharing knowledge with the community.
           </AppText>
-
         </View>
-
 
         {/* Ducks Section */}
         <View style={styles.ducksSection}>
@@ -133,7 +137,7 @@ export default function ProfileScreen({ navigation }) {
                 key={index}
                 style={styles.duckItem}
                 onPress={() =>
-                  navigation.navigate('Challenges', {
+                  navigation.navigate("Challenges", {
                     duckName: duck.name,
                     duckImage: duck.image,
                   })
@@ -147,10 +151,10 @@ export default function ProfileScreen({ navigation }) {
         </View>
 
         {/* Add Duck Button */}
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: "center" }}>
           <TouchableOpacity
             style={styles.addButton}
-            onPress={() => navigation.navigate('AddDuck', { addDuck })}
+            onPress={() => navigation.navigate("AddDuck", { addDuck })}
           >
             <Ionicons name="add" size={48} color="white" />
           </TouchableOpacity>
@@ -168,7 +172,7 @@ const styles = StyleSheet.create({
     paddingTop: 60,
   },
   profileImageWrapper: {
-    position: 'relative',
+    position: "relative",
     marginBottom: 24,
   },
   avatar: {
@@ -177,10 +181,10 @@ const styles = StyleSheet.create({
     borderRadius: 60,
   },
   addIcon: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 0,
     right: 0,
-    backgroundColor: '#28a745',
+    backgroundColor: "#28a745",
     borderRadius: 20,
     padding: 5,
   },
@@ -235,7 +239,7 @@ const styles = StyleSheet.create({
   },
   myDucks: {
     fontSize: 30,
-    color: 'white',
+    color: "white",
     marginBottom: 20,
   },
   ducksList: {
@@ -255,16 +259,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   duckName: {
-    color: 'white',
+    color: "white",
     fontSize: 18,
   },
   addButton: {
-    backgroundColor: '#28a745', // green color
+    backgroundColor: "#28a745", // green color
     width: 100,
     height: 100,
     borderRadius: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     marginTop: 10,
     marginBottom: 40,
   },
