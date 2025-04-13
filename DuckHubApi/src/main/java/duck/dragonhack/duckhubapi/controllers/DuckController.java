@@ -27,20 +27,20 @@ public class DuckController {
 
     // GET api/ducks/{id}: Get a single duck
     @GetMapping("/{id}")
-    public DuckResponse getDuckById(@PathVariable long id) {
+    public DuckResponse getDuckById(long id) {
         return duckService.getDuckById(id);
     }
 
     // POST api/ducks/add/{id}: Add a duck
     @PostMapping("/add/{id}")
-    public ResponseEntity<DuckResponse> addDuck(@PathVariable long id, @RequestBody DuckRequest duckRequest) {
+    public ResponseEntity<DuckResponse> addDuck(long id, @RequestBody DuckRequest duckRequest) {
         DuckResponse duckResponse = duckService.addDuck(id, duckRequest);
         return new ResponseEntity<>(duckResponse, HttpStatus.CREATED);
     }
 
     // GET api/ducks/user/{id}: Get all ducks by user id
     @GetMapping("/user/{id}")
-    public List<DuckResponse> getDucksByUserId(@PathVariable long id) {
+    public List<DuckResponse> getDucksByUserId(long id) {
         return duckService.getDucksByUserId(id);
     }
 
