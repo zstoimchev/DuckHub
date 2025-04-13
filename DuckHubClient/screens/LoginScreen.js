@@ -11,9 +11,38 @@ import AppText from "../components/AppText";
 const { width } = Dimensions.get("window");
 
 export default function LoginScreen({ navigation }) {
-  const handleLogin = () => {
-    navigation.replace("MainApp");
+  const handleLogin = async () => {
+    // Prepare the login data
+    const userData = {
+      email: 'user@example.com',  // Replace with actual user input for email
+      password: 'userpassword'    // Replace with actual user input for password
+    };
+
+    try {
+      // Send the POST request to the login API endpoint
+      const response = await fetch('http://localhost:8081/api/users/login', {
+        method: 'POST', // HTTP method
+        headers: {
+          'Content-Type': 'application/json' // Specify that the body content is JSON
+        },
+        body: JSON.stringify(userData) // Convert the user data object to a JSON string
+      });
+
+      // Check if the response is successful (status code 200-299)
+      if (response.ok) {
+        const data = await response.json(); // Parse the response body as JSON
+        console.log('Login successful:', data);
+        // You can now navigate to another page or store the user data, etc.
+      } else {
+        // Handle login failure (e.g., wrong credentials)
+        console.error('Login failed:', response.status, response.statusText);
+      }
+    } catch (error) {
+      // Handle network or other errors
+      console.error('Error during login:', error);
+    }
   };
+
 
   return (
     <View style={styles.container}>
