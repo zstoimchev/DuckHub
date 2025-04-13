@@ -33,7 +33,7 @@ public class DuckController {
 
     // POST api/ducks/add/{id}: Add a duck
     @PostMapping("/add/{id}")
-    public ResponseEntity<DuckResponse> addDuck(long id, @RequestBody DuckRequest duckRequest) {
+    public ResponseEntity<DuckResponse> addDuck(@PathVariable Long id, @RequestBody DuckRequest duckRequest) {
         DuckResponse duckResponse = duckService.addDuck(id, duckRequest);
         return new ResponseEntity<>(duckResponse, HttpStatus.CREATED);
     }

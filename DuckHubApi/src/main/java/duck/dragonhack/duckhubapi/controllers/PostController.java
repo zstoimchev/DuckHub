@@ -6,6 +6,8 @@ import duck.dragonhack.duckhubapi.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -20,4 +22,11 @@ public class PostController {
     public PostResponse addPost(@RequestBody PostRequest postRequest) {
         return postService.addPost(postRequest);
     }
+
+
+    @GetMapping("/all")
+    public List<PostResponse> getAllPosts() {
+        return postService.getAllPosts();
+    }
+
 }

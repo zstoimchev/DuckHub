@@ -10,7 +10,7 @@ public interface DuckService {
 
     DuckResponse getDuckById(long id);
 
-    DuckResponse addDuck(long id, DuckRequest duckRequest);
+    DuckResponse addDuck(Long id, DuckRequest duckRequest);
 
     List<DuckResponse> getDucksByUserId(long id);
 }

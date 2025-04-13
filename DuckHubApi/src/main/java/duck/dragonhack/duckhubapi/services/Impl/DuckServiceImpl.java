@@ -38,7 +38,7 @@ public class DuckServiceImpl implements DuckService {
     }
 
     // Add a duck:
-    public DuckResponse addDuck(long id, DuckRequest duckRequest) {
+    public DuckResponse addDuck(Long id, DuckRequest duckRequest) {
         User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("User not found"));
         Duck duck = duckRequest.toDuck();
         duck.setUser(user);

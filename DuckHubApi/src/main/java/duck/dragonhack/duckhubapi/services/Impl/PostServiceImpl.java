@@ -11,6 +11,9 @@ import duck.dragonhack.duckhubapi.services.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class PostServiceImpl implements PostService {
 
@@ -36,6 +39,15 @@ public class PostServiceImpl implements PostService {
         post.setStatus("COMPLETED");
         postRepository.save(post);
         return PostToResponse(post);
+
+    }
+
+    @Override
+    public List<PostResponse> getAllPosts() {
+        List<Post> posts = postRepository.findAll();
+        return posts.stream()
+                .map(this::PostToResponse)
+                .collect(Collectors.toList());
     }
 
     public PostResponse PostToResponse(Post post) {
@@ -44,9 +56,9 @@ public class PostServiceImpl implements PostService {
         postResponse.setPhoto(post.getPhoto());
         postResponse.setTimestamp(post.getTimestamp());
         postResponse.setStatus(post.getStatus());
-        postResponse.setUser(post.getUser());
-        postResponse.setDuck(post.getDuck());
-        postResponse.setChallenge(post.getChallenge());
+        postResponse.setUserId(post.getUser().getId());
+        postResponse.setDuckId(post.getDuck().getId());
+        postResponse.setChallengeId(post.getChallenge().getId());
         return postResponse;
     }
 }

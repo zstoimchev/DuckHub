@@ -13,21 +13,21 @@ public class PostResponse {
     private String photo;
     private Instant timestamp;
     private String status;
-    private User user;
-    private Duck duck;
-    private Challenge challenge;
+    private long userId;
+    private long duckId;
+    private long challengeId;
 
     public PostResponse() {
     }
 
-    public PostResponse(long id, String photo, Instant timestamp, String status, User user, Duck duck, Challenge challenge) {
+    public PostResponse(long id, String photo, Instant timestamp, String status, long userId, long duckId, long challengeId) {
         this.id = id;
         this.photo = photo;
         this.timestamp = timestamp;
         this.status = status;
-        this.user = user;
-        this.duck = duck;
-        this.challenge = challenge;
+        this.userId = userId;
+        this.duckId = duckId;
+        this.challengeId = challengeId;
     }
 
     public long getId() {
@@ -62,27 +62,27 @@ public class PostResponse {
         this.status = status;
     }
 
-    public User getUser() {
-        return user;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public Duck getDuck() {
-        return duck;
+    public long getDuckId() {
+        return duckId;
     }
 
-    public void setDuck(Duck duck) {
-        this.duck = duck;
+    public void setDuckId(long duckId) {
+        this.duckId = duckId;
     }
 
-    public Challenge getChallenge() {
-        return challenge;
+    public long getChallengeId() {
+        return challengeId;
     }
 
-    public void setChallenge(Challenge challenge) {
-        this.challenge = challenge;
+    public void setChallengeId(long challengeId) {
+        this.challengeId = challengeId;
     }
 }

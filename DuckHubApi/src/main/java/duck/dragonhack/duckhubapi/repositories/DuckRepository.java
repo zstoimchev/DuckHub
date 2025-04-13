@@ -7,5 +7,5 @@ import java.util.List;
 
 
 public interface DuckRepository extends JpaRepository<Duck, Long> {
-    List<Duck> findByUserId(long id);
+    List<Duck> findByUserId(Long id);
 }
