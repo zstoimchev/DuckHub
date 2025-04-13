@@ -15,6 +15,8 @@ import LoginScreen from "./screens/LoginScreen";
 import RegisterScreen from "./screens/RegisterScreen.js";
 import AddDuckScreen from "./screens/AddDuckScreen";
 import ChallengesScreen from "./screens/ChallengesScreen.js";
+import ChallengeDetailScreen from './screens/ChallengeDetailScreen';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,7 @@ export default function App() {
         <Stack.Screen name="MainApp" component={BottomTabNavigator} />
         <Stack.Screen name="AddDuck" component={AddDuckScreen} />
         <Stack.Screen name="Challenges" component={ChallengesScreen} /> 
+        <Stack.Screen name="ChallengeDetail" component={ChallengeDetailScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
